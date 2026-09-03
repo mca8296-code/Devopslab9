@@ -18,10 +18,8 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                dir('Program 9') {
-                    bat 'dir'
-                    bat 'docker build -t flaskapp .'
-                }
+                bat 'dir'
+                bat 'docker build -t flaskapp .'
             }
         }
 
@@ -34,9 +32,7 @@ pipeline {
 
         stage('Run Test Container') {
             steps {
-                dir('Program 9') {
-                    bat 'docker run --rm flaskapp'
-                }
+                bat 'docker run --rm flaskapp'
             }
         }
     }
