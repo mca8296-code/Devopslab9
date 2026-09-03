@@ -1,13 +1,15 @@
 pipeline {
     agent any
 
-    stages {
+    environment {
+        PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
+    }
 
+    stages {
         stage('Check Docker') {
             steps {
                 bat 'where docker'
                 bat 'docker --version'
-                bat 'docker info'
             }
         }
 
@@ -28,9 +30,7 @@ pipeline {
 
         stage('Run Test Container') {
             steps {
-                dir('Program 9') {
-                    bat 'docker run --rm flaskapp'
-                }
+                bat 'docker run --rm flaskapp'
             }
         }
     }
