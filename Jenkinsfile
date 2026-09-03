@@ -6,6 +6,7 @@ pipeline {
     }
 
     stages {
+
         stage('Check Docker') {
             steps {
                 bat 'where docker'
@@ -16,6 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 dir('Program 9') {
+                    bat 'dir'
                     bat 'docker build -t flaskapp .'
                 }
             }
@@ -30,7 +32,9 @@ pipeline {
 
         stage('Run Test Container') {
             steps {
-                bat 'docker run --rm flaskapp'
+                dir('Program 9') {
+                    bat 'docker run --rm flaskapp'
+                }
             }
         }
     }
