@@ -26,7 +26,7 @@ pipeline {
         stage('Run Dev Container') {
             steps {
                 bat 'docker rm -f flaskapp 2>NUL || exit /B 0'
-                bat 'docker run -d --name flaskapp -p 5000:5000 flaskapp'
+                bat 'docker run -d --name flaskapp -p 5002:5000 flaskapp'
             }
         }
 
