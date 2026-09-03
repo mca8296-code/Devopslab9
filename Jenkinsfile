@@ -2,15 +2,17 @@ pipeline {
     agent any
 
     environment {
-        PATH = "C:\\Users\\shash\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe"
+        PATH = "C:\\Users\\shash\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;C:\\Windows\\System32;${env.PATH}"
     }
 
     stages {
 
         stage('Check Docker') {
             steps {
-                bat 'where docker'
-                bat 'docker --version'
+                bat '''
+                    echo Checking Docker...
+                    docker --version
+                '''
             }
         }
 
