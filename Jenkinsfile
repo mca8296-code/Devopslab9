@@ -2,10 +2,12 @@ pipeline {
     agent any
 
     stages {
+
         stage('Check Docker') {
             steps {
                 bat 'where docker'
                 bat 'docker --version'
+                bat 'docker info'
             }
         }
 
@@ -19,9 +21,8 @@ pipeline {
 
         stage('Run Dev Container') {
             steps {
-                dir('Program 9') {
-                    bat 'docker run -d --name flaskapp -p 5000:5000 flaskapp'
-                }
+                bat 'docker rm -f flaskapp 2>NUL || exit /B 0'
+                bat 'docker run -d --name flaskapp -p 5000:5000 flaskapp'
             }
         }
 
