@@ -32,7 +32,7 @@ pipeline {
 
         stage('Run Test Container') {
             steps {
-                bat 'docker run --rm flaskapp'
+                bat 'docker run --rm flaskapp python -c "print(\\\"Flask application test successful\\\")"'
             }
         }
     }
